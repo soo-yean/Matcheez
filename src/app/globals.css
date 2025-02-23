@@ -4,8 +4,8 @@
 
 @layer base {
   .menu-highlight {
-    -webkit-text-stroke: 1px yellow;
-    text-shadow: 1px 4px yellow;
+    -webkit-text-stroke: 1px gold;
+    text-shadow: 1px 4px gold;
   }
 }
 
