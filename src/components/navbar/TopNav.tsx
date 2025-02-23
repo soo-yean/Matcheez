@@ -9,6 +9,7 @@ import {
 } from "@heroui/react";
 import Link from "next/link";
 import { PiCheeseFill } from "react-icons/pi";
+import NavLink from "./NavLink";
 
 export default function TopNav() {
   return (
@@ -20,7 +21,7 @@ export default function TopNav() {
           "font-bold",
           "text-2xl",
           "uppercase",
-          "data-[active=true]: menu-highlight",
+          "data-[active=true]:menu-highlight",
         ],
       }}
     >
@@ -31,15 +32,9 @@ export default function TopNav() {
         </div>
       </NavbarBrand>
       <NavbarContent justify="center">
-        <NavbarItem as={Link} href="/members">
-          Matches
-        </NavbarItem>
-        <NavbarItem as={Link} href="/lists">
-          Lists
-        </NavbarItem>
-        <NavbarItem as={Link} href="/messages">
-          Messages
-        </NavbarItem>
+        <NavLink href="/members" label="Matches" />
+        <NavLink href="/lists" label="Lists" />
+        <NavLink href="/messages" label="Messages" />
       </NavbarContent>
       <NavbarContent justify="end">
         <Button
