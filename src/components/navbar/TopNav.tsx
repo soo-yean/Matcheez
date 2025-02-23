@@ -38,12 +38,16 @@ export default function TopNav() {
       </NavbarContent>
       <NavbarContent justify="end">
         <Button
+          as={Link}
+          href="/login"
           variant="bordered"
           className="font-bold text-gray-900 border-yellow-400"
         >
           Login
         </Button>
         <Button
+          as={Link}
+          href="/register"
           variant="bordered"
           className="font-bold text-gray-900 border-yellow-400"
         >
