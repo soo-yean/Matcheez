@@ -16,7 +16,12 @@ export default function TopNav() {
       maxWidth="xl"
       // className="bg-gradient-to-r from-stone-50 to-stone-300"
       classNames={{
-        item: ["font-bold", "text-xl", "uppercase"],
+        item: [
+          "font-bold",
+          "text-2xl",
+          "uppercase",
+          "data-[active=true]: menu-highlight",
+        ],
       }}
     >
       <NavbarBrand as={Link} href="/">

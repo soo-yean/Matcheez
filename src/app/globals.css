@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  .menu-highlight {
+    -webkit-text-stroke: 1px yellow;
+    text-shadow: 1px 4px yellow;
+  }
+}
+
 /* :root {
   --background: #ffffff;
   --foreground: #171717;
