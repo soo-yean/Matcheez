@@ -3,16 +3,20 @@
 import { useForm } from "react-hook-form";
 import { Button, Card, CardBody, CardHeader, Input } from "@heroui/react";
 import { GiSeatedMouse } from "react-icons/gi";
+import { loginSchema, LoginSchema } from "@/lib/schemas/loginSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function LoginForm() {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm();
+  } = useForm<LoginSchema>({
+    resolver: zodResolver(loginSchema),
+    mode: "onTouched",
+  });
 
-  //todo: data type
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: LoginSchema) => {
     console.log(data);
   };
 
@@ -33,7 +37,7 @@ export default function LoginForm() {
             <Input
               label="Email"
               variant="bordered"
-              {...register("email", { required: "Email is required" })}
+              {...register("email")}
               isInvalid={!!errors.email} //!! for convert object to boolean
               errorMessage={errors.email?.message as string}
             />
@@ -41,12 +45,12 @@ export default function LoginForm() {
               label="Password"
               variant="bordered"
               type="password"
-              {...register("password", { required: "Password is required" })}
+              {...register("password")}
               isInvalid={!!errors.password}
               errorMessage={errors.password?.message as string}
             />
             <Button
-              // isDisabled={!isValid}
+              isDisabled={!isValid}
               fullWidth
               color="warning"
               type="submit"
