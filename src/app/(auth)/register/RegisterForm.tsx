@@ -11,6 +11,7 @@ export default function RegisterForm() {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors, isValid },
   } = useForm<RegisterSchema>({
     resolver: zodResolver(registerSchema),
@@ -20,6 +21,20 @@ export default function RegisterForm() {
   const onSubmit = async (data: RegisterSchema) => {
     const result = await registerUser(data);
     console.log(result);
+
+    if (result.status === "success") {
+      //success
+    } else {
+      //either string(error msg) or ZodIssue[]
+      if (Array.isArray(result.error)) {
+        result.error.forEach((e) => {
+          const fieldName = e.path.join(",") as "email" | "name" | "password";
+          setError(fieldName, { message: e.message });
+        });
+      } else {
+        setError("root.serverError", { message: result.error });
+      }
+    }
   };
 
   return (
@@ -58,6 +73,13 @@ export default function RegisterForm() {
               isInvalid={!!errors.password}
               errorMessage={errors.password?.message}
             />
+
+            {errors.root?.serverError && (
+              <p className="text-danger text-sm">
+                {errors.root?.serverError.message}
+              </p>
+            )}
+
             <Button
               isDisabled={!isValid}
               fullWidth
